@@ -60,7 +60,7 @@
                 <p class="text-center mt-5 mb-4">
                     <img src="${url.resourcesPath}/img/Logo.png" height="96" width="96" class="rounded-3" />
                 </p>
-                <h4 class="text-center mt-4">${(realm.displayName!'App Name')}</h4>
+                <h4 class="text-center mt-4 mb-5">${(realm.displayName!'App Name')}</h4>
             <#else>
                 <#if displayRequiredFields>
                     <div class="${properties.kcContentWrapperClass!}">
@@ -107,22 +107,22 @@
                         <#-- during login.                                                                               -->
                         <#if displayMessage && message?has_content && (message.type != 'warning' || !isAppInitiatedAction??)>
                             <#if message.type = 'success'>
-                            <div class="alert alert-success mt-3 mb-4">
+                            <div class="alert alert-success mb-4">
                                 ${kcSanitize(message.summary)?no_esc}
                             </div>
                             </#if>
                             <#if message.type = 'warning'>
-                            <div class="alert alert-warning mt-3 mb-4">
+                            <div class="alert alert-warning mb-4">
                                 ${kcSanitize(message.summary)?no_esc}
                             </div>
                             </#if>
                             <#if message.type = 'error'>
-                            <div class="alert alert-danger mt-3 mb-4">
+                            <div class="alert alert-danger mb-4">
                                 ${kcSanitize(message.summary)?no_esc}
                             </div>
                             </#if>
                             <#if message.type = 'info'>
-                            <div class="alert alert-primary mt-3 mb-4">
+                            <div class="alert alert-primary mb-4">
                                 ${kcSanitize(message.summary)?no_esc}
                             </div>
                             </#if>
