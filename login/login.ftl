@@ -1,7 +1,7 @@
 <#import "template.ftl" as layout>
 <@layout.registrationLayout displayMessage=!messagesPerField.existsError('username','password') displayInfo=realm.password && realm.registrationAllowed && !registrationDisabled??; section>
     <#if section = "form">
-        <div class="card bg-dark mt-5">
+        <div class="card bg-dark">
             <div class="card-body">
                 <h4 class="card-title">${msg("loginAccountTitle")}</h4>
 
@@ -37,9 +37,9 @@
                     <#if realm.rememberMe && !usernameEditDisabled??>
                         <div class="form-check mt-3">
                             <#if login.rememberMe??>
-                            <input class="form-check-input" type="checkbox" id="rememberMe" checked>
+                            <input class="form-check-input" type="checkbox" id="rememberMe" name="rememberMe" checked>
                             <#else>
-                            <input class="form-check-input" type="checkbox" id="rememberMe">
+                            <input class="form-check-input" type="checkbox" id="rememberMe" name="rememberMe">
                             </#if>
                             <label class="form-check-label" for="rememberMe">
                                 ${msg("rememberMe")}
