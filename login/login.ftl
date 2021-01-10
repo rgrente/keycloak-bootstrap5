@@ -1,11 +1,6 @@
 <#import "template.ftl" as layout>
 <@layout.registrationLayout displayMessage=!messagesPerField.existsError('username','password') displayInfo=realm.password && realm.registrationAllowed && !registrationDisabled??; section>
-    <#if section = "header">
-    <#elseif section = "form">
-        <p class="text-center mt-5 mb-4">
-            <img src="${url.resourcesPath}/img/Icon.png" height="96" width="96" class="rounded-3" />
-        </p>
-        <h4 class="text-center mt-4">${(realm.displayName!'App Name')}</h4>
+    <#if section = "form">
         <div class="card bg-dark mt-5">
             <div class="card-body">
                 <h4 class="card-title">${msg("loginAccountTitle")}</h4>
@@ -29,7 +24,7 @@
 
                     <!-- Pw -->
                     <div class="form-floating mt-3">
-                        <input tabindex="2" type="text" class="form-control bg-dark text-light b-light" id="password" name="password" value="${(login.username!'')}" autofocus placeholder="password">
+                        <input tabindex="2" type="password" class="form-control bg-dark text-light b-light" id="password" name="password" value="${(login.username!'')}" autofocus placeholder="password">
                         <label for="password">${msg("password")}</label>
                     </div>
 
@@ -54,14 +49,27 @@
 
                     <input type="hidden" id="id-hidden-input" name="credentialId" <#if auth.selectedCredential?has_content>value="${auth.selectedCredential}"</#if>/>
                     <button tabindex="4" type="submit" class="btn btn-primary mt-3 w-100">${msg("doLogIn")}</button>
+
+                    <!-- Register -->
+                    <#if realm.password && realm.registrationAllowed && !registrationDisabled??>
+                    <a href="${url.registrationUrl}" class="btn btn-secondary w-100 mt-2">${msg("doRegister")}</a>
+                    </#if>
                 </form>
             </div>
         </div>
-    <#elseif section = "info" >
-        <#if realm.password && realm.registrationAllowed && !registrationDisabled??>
-            <div id="kc-registration-container">
-                <div id="kc-registration">
-                    <span>${msg("noAccount")} <a tabindex="6" href="${url.registrationUrl}">${msg("doRegister")}</a></span>
+
+        <!-- Social providers -->
+        <#if realm.password && social.providers??>
+            <div class="card bg-dark mt-3">
+                <div class="card-body">
+                    <h4 class="mb-3">${msg("identity-provider-login-label")}</h4>
+
+                    <#list social.providers as p>
+                        <a id="social-${p.alias}" class="btn btn-light w-100"
+                                type="button" href="${p.loginUrl}">
+                                ${p.displayName!}
+                        </a>
+                    </#list>
                 </div>
             </div>
         </#if>

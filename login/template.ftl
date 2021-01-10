@@ -57,28 +57,10 @@
                 </div>
             </#if>
             <#if !(auth?has_content && auth.showUsername() && !auth.showResetCredentials())>
-                <#if displayRequiredFields>
-                    <div class="${properties.kcContentWrapperClass!}">
-                        <div class="${properties.kcLabelWrapperClass!} subtitle">
-                            <span class="subtitle"><span class="required">*</span> ${msg("requiredFields")}</span>
-                        </div>
-                        <div class="col-md-10">
-                            <h1 id="kc-page-title"><#nested "header"></h1>
-                        </div>
-                    </div>
-                <#else>
-
-                    <#-- <h1 id="kc-page-title"><#nested "header"></h1> -->
-
-                    <h1 id="kc-page-title" class="text-center"><#nested "header"></h1>
-
-                    <#--
-                    <div class="mdc-card__primary-action">
-                        <h1 id="kc-page-title" class="mdc-typography mdc-typography--headline4"><#nested "header"></h1>
-                    </div>
-                    -->
-
-                </#if>
+                <p class="text-center mt-5 mb-4">
+                    <img src="${url.resourcesPath}/img/Logo.png" height="96" width="96" class="rounded-3" />
+                </p>
+                <h4 class="text-center mt-4">${(realm.displayName!'App Name')}</h4>
             <#else>
                 <#if displayRequiredFields>
                     <div class="${properties.kcContentWrapperClass!}">
@@ -124,13 +106,26 @@
                         <#-- App-initiated actions should not see warning messages about the need to complete the action -->
                         <#-- during login.                                                                               -->
                         <#if displayMessage && message?has_content && (message.type != 'warning' || !isAppInitiatedAction??)>
-                            <div class="alert alert-${message.type}">
-                                <#if message.type = 'success'><span class="${properties.kcFeedbackSuccessIcon!}"></span></#if>
-                                <#if message.type = 'warning'><span class="${properties.kcFeedbackWarningIcon!}"></span></#if>
-                                <#if message.type = 'error'><span class="${properties.kcFeedbackErrorIcon!}"></span></#if>
-                                <#if message.type = 'info'><span class="${properties.kcFeedbackInfoIcon!}"></span></#if>
-                                <span class="kc-feedback-text">${kcSanitize(message.summary)?no_esc}</span>
+                            <#if message.type = 'success'>
+                            <div class="alert alert-success mt-3">
+                                ${kcSanitize(message.summary)?no_esc}
                             </div>
+                            </#if>
+                            <#if message.type = 'warning'>
+                            <div class="alert alert-warning mt-3">
+                                ${kcSanitize(message.summary)?no_esc}
+                            </div>
+                            </#if>
+                            <#if message.type = 'error'>
+                            <div class="alert alert-danger mt-3">
+                                ${kcSanitize(message.summary)?no_esc}
+                            </div>
+                            </#if>
+                            <#if message.type = 'info'>
+                            <div class="alert alert-primary mt-3">
+                                ${kcSanitize(message.summary)?no_esc}
+                            </div>
+                            </#if>
                         </#if>
 
                         <#nested "form">
