@@ -22,17 +22,6 @@
                         <label for="username"><#if !realm.loginWithEmailAllowed>${msg("username")}<#elseif !realm.registrationEmailAsUsername>${msg("usernameOrEmail")}<#else>${msg("email")}</#if></label>
                     </div>
 
-                    <!-- Pw -->
-                    <div class="form-floating mt-3">
-                        <input tabindex="2" type="password" class="form-control" id="password" name="password" value="${(login.username!'')}" autofocus placeholder="password">
-                        <label for="password">${msg("password")}</label>
-                    </div>
-
-                    <!-- Forgot pw -->
-                    <#if realm.resetPasswordAllowed>
-                        <p class="float-end m-0 mt-3"><a tabindex="5" class="text-decoration-none" href="${url.loginResetCredentialsUrl}">${msg("doForgotPassword")}</a></p>
-                    </#if>
-
                     <!-- Remember me -->
                     <#if realm.rememberMe && !usernameEditDisabled??>
                         <div class="form-check mt-3">

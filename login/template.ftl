@@ -35,7 +35,7 @@
     </#if>
 </head>
 
-<body class="container pt-3">
+<body class="container pt-3" style="background-color: #f5f5f5;">
     <div class="">
         <div id="kc-header" class="${properties.kcHeaderClass!}">
         <#-- <div id="kc-header-wrapper" class="${properties.kcHeaderWrapperClass!}">${kcSanitize(msg("loginTitleHtml",(realm.displayNameHtml!'')))?no_esc}</div> -->
@@ -58,9 +58,9 @@
             </#if>
             <#if !(auth?has_content && auth.showUsername() && !auth.showResetCredentials())>
                 <p class="text-center mt-5 mb-4">
-                    <img src="${url.resourcesPath}/img/Logo.png" height="96" width="96" class="rounded-3" />
+                    <img src="${url.resourcesPath}/img/logo.svg" height="96" width="96" class="rounded-3" />
                 </p>
-                <h4 class="text-center mt-4 mb-5">${(realm.displayName!'App Name')}</h4>
+                <h2 class="text-center mt-4 mb-5">${msg("welcomeText")} ${(realm.displayName!'App Name')}</h2>
             <#else>
                 <#if displayRequiredFields>
                     <div class="${properties.kcContentWrapperClass!}">
@@ -84,17 +84,16 @@
                     </div>
                 <#else>
                     <#nested "show-username">
-                    <div class="${properties.kcFormGroupClass!}">
-                        <div id="kc-username">
-                            <label id="kc-attempted-username">${auth.attemptedUsername}</label>
-                            <a id="reset-login" href="${url.loginRestartFlowUrl}">
-                                <div class="kc-login-tooltip">
-                                    <i class="${properties.kcResetFlowIcon!}"></i>
-                                    <span class="kc-tooltip-text">${msg("restartLoginTooltip")}</span>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
+                    <p class="text-center mt-5 mb-4">
+                        <img src="${url.resourcesPath}/img/shield-color.svg" height="96" width="96" class="rounded-3" />
+                    </p>
+                                <div class="row">
+                <div class="col-12 col-md-6 col-lg-4 offset-md-3 offset-lg-4 mb-4">
+                                            <a class="btn btn-secondary mt-3 w-100" role="button" href="${url.loginRestartFlowUrl}">${msg("restartLoginTooltip")}</a>
+                </div>
+               </div>
+
+                  
                 </#if>
             </#if>
             </header>

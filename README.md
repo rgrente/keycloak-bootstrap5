@@ -1,17 +1,26 @@
-# a Bootstrap v5 Keycloak Theme (WIP)
+# Keycloak bootstrap 5 theme
+
+Fork of https://github.com/ambersnow/keycloaktheme-bs5
 
 A simple Bootstrap v5 based Keycloak Theme.
 
-I didn't have much luck finding something like this that was open source, so I wanted to make one and make it available for all to use.
+## Work In Progess
 
-This is still a work-in-progress as I am trying to replicate all the various pages. Feedback and suggestions welcome. :)
+Currently, the theme only supports these authentication methods :
+
+* Username + password
+* Username only
+* Webauthn
+* IDP delegation
+
+You can use other methods available on Keycloak, but the rendering may be not good. 
 
 ## Usage
 
 Download the repo, place it in the `themes` directory in your Keycloak instance.
+To use it, you need to define it as default login theme for a realm.
 
-The theme pulls the app name from the name of the realm automatically.
+## Customization
 
-The theme also allows you to use a custom logo, so upload your logo with the name of `Logo.png` under `resources/img/`.
+The theme also allows you to use a custom logo, so upload your logo with the name of `logo.svg` under `resources/img/`.
 
-Thanks! :)
