@@ -133,7 +133,8 @@
                         <form id="kc-select-try-another-way-form" action="${url.loginAction}" method="post" <#if displayWide>class="${properties.kcContentWrapperClass!}"</#if>>
                             <div <#if displayWide>class="${properties.kcFormSocialAccountContentClass!} ${properties.kcFormSocialAccountClass!}"</#if>>
                                 <div class="${properties.kcFormGroupClass!}">
-                                            <a class="btn btn-secondary mt-3 w-100" role="button" href="#" onclick="document.forms['kc-select-try-another-way-form'].submit();return false;">${msg("doTryAnotherWay")}</a>
+                                    <input type="hidden" name="tryAnotherWay" value="on" />
+                                    <a class="btn btn-danger mt-3 w-100" role="button" href="#" onclick="document.forms['kc-select-try-another-way-form'].submit();return false;">${msg("doTryAnotherWay")}</a>
                                 </div>
                             </div>
                         </form>
